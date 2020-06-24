@@ -1,12 +1,12 @@
 state("Filament-Win64-Shipping", "v1.0") {
     // The id of the current anchor. Changes when entering an anchor
-    uint currentAnchor: 0x034106E0, 0x28, 0x120, 0x170, 0x248, 0x2F4;
+    uint currentAnchor: 0x0340F708, 0x8, 0x1A8, 0xE8, 0x398, 0x2F4;
     // The current puzzle in the active anchor. 0 = first puzzle, nrOfPuzzlesInAnchor = last puzzle completed
-    uint currentPuzzleInAnchor: 0x03412FD8, 0x1F8, 0x3F8, 0x470, 0x20, 0x1A0;
+    uint currentPuzzleInAnchor: 0x0340F708, 0x8, 0xF8, 0x20, 0x1A0;
     // The total number of puzzles in an anchor. Changes when entering an anchor
-    uint nrOfPuzzlesInAnchor: 0x0340F788, 0x8, 0x1A8, 0xE8, 0x398, 0x2DC;
+    uint nrOfPuzzlesInAnchor: 0x0340F708, 0x8, 0x1D8, 0x2E8, 0x248, 0x2DC;
     // The number of completed puzzles in an anchor. Changes when solving a puzzle and when going to another anchor.
-    uint nrOfCompletedPuzzlesInAnchor: 0x0340F788, 0x8, 0x1A8, 0xE8, 0x2B8, 0x10, 0x3A8, 0x2D8;
+    uint nrOfCompletedPuzzlesInAnchor: 0x0340F708, 0x8, 0x1A8, 0xF0, 0x3A8, 0x2D8;
 }
 
 init {

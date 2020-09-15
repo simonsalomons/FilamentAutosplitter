@@ -1,3 +1,9 @@
+// Known issues:
+// - Load removal doesn't work when resetting a level due to the nrOfBots resetting to 0 between resets of a level.
+//   NrOfBots is used to determine wether or not the player is inside an anchor.
+//   When exiting an anchor, load removal should not happen.
+//   (The game does load something, but the player can move)
+
 state("Filament-Win64-Shipping", "v1.0") {
     // The id of the current anchor. Changes when entering an anchor
     uint currentAnchor: 0x02FD5080, 0x48, 0x630, 0x990, 0x248, 0x2F4;
@@ -7,6 +13,12 @@ state("Filament-Win64-Shipping", "v1.0") {
     uint nrOfPuzzlesInAnchor: 0x0340F708, 0x8, 0x1A8, 0x2DC;
     // The number of completed puzzles in an anchor. Changes when solving a puzzle and when going to another anchor.
     uint nrOfCompletedPuzzlesInAnchor: 0x0340F708, 0x8, 0x1C8, 0x20, 0x248, 0x2D8;
+    // Loading a level, 0 when not loading, "something else" when loading
+    uint loadingLevel: 0x0340F708, 0x8, 0x180, 0x10, 0x1C8, 0xA0, 0x40, 0x264;
+    // Loading a save file or the cockpit. 1 when loading, 0 when not loading
+    uint loadingBig: 0x033AD568, 0x250, 0x50, 0x0, 0x2C0, 0x20, 0x2D8, 0x580;
+    // Number of bots on screen
+    uint nrOfBots: 0x03410660, 0x8, 0x8, 0x20, 0x28, 0x48, 0x28;
 }
 
 init {
@@ -142,5 +154,11 @@ reset {
 }
 
 isLoading {
-    
+    if (current.loadingBig == 1) {
+        return true;
+    } else if (current.loadingLevel != 0 && current.nrOfBots != 0) {
+        return true;
+    } else {
+        return false;
+    }
 }

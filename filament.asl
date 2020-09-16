@@ -16,7 +16,7 @@ state("Filament-Win64-Shipping", "v1.0") {
     // Loading a level, 0 when not loading, "something else" when loading
     uint loadingLevel: 0x0340F708, 0x8, 0x180, 0x10, 0x1C8, 0xA0, 0x40, 0x264;
     // Loading a save file or the cockpit. 1 when loading, 0 when not loading
-    uint loadingBig: 0x03328938, 0xA8, 0x18, 0x28;
+    uint loadingBig: 0x03328938, 0x28, 0x18, 0xA8;
     // Number of bots on screen
     uint nrOfBots: 0x03410660, 0x8, 0x8, 0x20, 0x28, 0x48, 0x28;
 }

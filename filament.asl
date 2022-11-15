@@ -34,7 +34,6 @@ startup {
     settings.Add("splitOnPuzzleComplete", true, "Split on puzzle completion");
     settings.SetToolTip("splitOnPuzzleComplete", "Splits every time you complete a puzzle. Even when you have solved it before.");
 
-    settings.Add("splitOnlyUnsolved", false, "Split only when unsolved before");
     settings.Add("splitOnSpecificAnchors", false, "Split only on specific anchors");
     settings.SetToolTip("splitOnSpecificAnchors", "Splits only on the selected anchors.");
 

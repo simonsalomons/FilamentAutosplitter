@@ -35,8 +35,6 @@ startup {
     settings.SetToolTip("splitOnPuzzleComplete", "Splits every time you complete a puzzle. Even when you have solved it before.");
 
     settings.Add("splitOnlyUnsolved", false, "Split only when unsolved before");
-    settings.SetToolTip("splitOnlyUnsolved", "Splits a puzzle/anchor completion only if it was unsolved before.");
-
     settings.Add("splitOnSpecificAnchors", false, "Split only on specific anchors");
     settings.SetToolTip("splitOnSpecificAnchors", "Splits only on the selected anchors.");
 
@@ -127,23 +125,12 @@ split {
         return false;
     }
 
-    if (settings["splitOnlyUnsolved"]) {
-        if (current.nrOfCompletedPuzzlesInAnchor == old.nrOfCompletedPuzzlesInAnchor + 1) {
-            if (settings["splitOnPuzzleComplete"]) {
-                return true;
-            } else if (settings["splitOnAnchorComplete"]
-                && current.nrOfCompletedPuzzlesInAnchor == current.nrOfPuzzlesInAnchor) {
-                return true;
-            }
-        }
-    } else {
-        if (settings["splitOnPuzzleComplete"]
-            && current.currentPuzzleInAnchor == old.currentPuzzleInAnchor + 1) {
+    if (current.nrOfCompletedPuzzlesInAnchor == old.nrOfCompletedPuzzlesInAnchor + 1
+        && current.nrOfCompletedPuzzlesInAnchor <= current.nrOfPuzzlesInAnchor) {
+        if (settings["splitOnPuzzleComplete"]) {
             return true;
         } else if (settings["splitOnAnchorComplete"]
-            && current.currentPuzzleInAnchor != 0
-            && current.currentPuzzleInAnchor != old.currentPuzzleInAnchor 
-            && current.currentPuzzleInAnchor == current.nrOfPuzzlesInAnchor) {
+            && current.nrOfCompletedPuzzlesInAnchor == current.nrOfPuzzlesInAnchor) {
             return true;
         }
     }
